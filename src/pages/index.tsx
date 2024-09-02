@@ -21,6 +21,8 @@ import { WriteContract } from '../components/WriteContract';
 import { WriteContractPrepared } from '../components/WriteContractPrepared';
 import { MulticallPlugin } from "@rudra-xyz/web3-plugin-multicall";
 import { Web3 } from "web3";
+import { hashCountryName } from '@/utils/hashCountryName';
+import { testGenerateProof } from '@/utils';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,6 +44,18 @@ export default function Home() {
   // Reference: https://www.npmjs.com/package/@swisstronik/web3-plugin-swisstronik
   // web3.registerPlugin(new SwisstronikPlugin());
 
+  async function handleButtonClick() {
+    const countryName = 'Nigerian';
+    const reducedHash = hashCountryName(countryName);
+    console.log(reducedHash);
+    await testGenerateProof({
+      year: "1990",
+      month: "6",
+      day: "12",
+      nationality_hash: 10383936915116340591n,
+      voter_id: "120000",
+    })
+  }
   return (
     <>
       <Head>
@@ -51,7 +65,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <div>
+        <button onClick={handleButtonClick} className="">
+          try something
+        </button>
+        {/* <div>
           <Connect />
           {account.isConnected &&
             <>
@@ -114,7 +131,7 @@ export default function Home() {
               <WriteContractPrepared />
             </>
           }
-        </div>
+        </div> */}
       </main>
     </>
   );
