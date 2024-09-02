@@ -19,10 +19,29 @@ import { WatchPendingTransactions } from '../components/WatchPendingTransactions
 import { SendTransactionPrepared } from '../components/SendTransactionPrepared';
 import { WriteContract } from '../components/WriteContract';
 import { WriteContractPrepared } from '../components/WriteContractPrepared';
+import { MulticallPlugin } from "@rudra-xyz/web3-plugin-multicall";
+import { Web3 } from "web3";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { account } = useEthereum();
+
+  // 1. using multicall plugin
+  // use reference: https://github.com/0xrudra-xyz/web3-plugin-multicall
+  // web3.registerPlugin(new MulticallPlugin());
+
+  // const calls = [
+  //   {
+  //     target: web3.multicall,
+  //     callData: ""
+  //   }
+  // ]
+
+  // 2. Using SwisstronikPlugin
+  // Reference: https://www.npmjs.com/package/@swisstronik/web3-plugin-swisstronik
+  // web3.registerPlugin(new SwisstronikPlugin());
+
   return (
     <>
       <Head>
