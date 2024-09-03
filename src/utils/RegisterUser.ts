@@ -103,8 +103,9 @@ class UserProof {
 
     }
 
-    verifyProof2(decryptedData: any): boolean | null {
+    verifyUserProof(secretkey: string): boolean | null {
         try {
+            const decryptedData = this.decryptProof(secretkey);
           if (!this.zokratesProvider) {
             throw new Error("ZoKrates provider is not initialized. Call initializeProvider() first.");
           }
