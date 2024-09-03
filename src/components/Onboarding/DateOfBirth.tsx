@@ -10,8 +10,8 @@ const DateOfBirth: React.FC<DateOfBirthProps> = ({
   setActiveModal,
 }) => {
   const handleContinue = () => {
-    // handleCloseOverlay();
-    setActiveModal(2);
+    handleCloseOverlay();
+    // setActiveModal(2);
   };
 
   return (
