@@ -1,4 +1,27 @@
-:root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.cdnfonts.com/css/rogan');
+
+@keyframes borderAttention {
+  0% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: linear-gradient(45deg, yellow, green);
+  }
+  100% {
+    border-color: transparent;
+  }
+}
+
+/* Apply the animation to the button */
+.button-attention {
+  animation: borderAttention 1s ease-in-out infinite;
+}
+
+/* :root {
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
@@ -104,4 +127,4 @@ a {
   html {
     color-scheme: dark;
   }
-}
+} */
