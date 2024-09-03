@@ -1,24 +1,11 @@
 'use client';
 
 import styles from '@/styles/Home.module.css';
+import { testGenerateProof } from '@/utils';
+import { hashCountryName } from '@/utils/hashCountryName';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
-import { Account } from '../components/Account';
-import { Balance } from '../components/Balance';
-import { BlockNumber } from '../components/BlockNumber';
-import { Connect } from '../components/Connect';
 import { useEthereum } from '../components/Context';
-import { NetworkSwitcher } from '../components/NetworkSwitcher';
-import { ReadContract } from '../components/ReadContract';
-import { SendTransaction } from '../components/SendTransaction';
-import { SendTransactionPrepared } from '../components/SendTransactionPrepared';
-import { SignMessage } from '../components/SignMessage';
-import { SignTypedData } from '../components/SignTypedData';
-import { Token } from '../components/Token';
-import { WatchContractEvents } from '../components/WatchContractEvents';
-import { WatchPendingTransactions } from '../components/WatchPendingTransactions';
-import { WriteContract } from '../components/WriteContract';
-import { WriteContractPrepared } from '../components/WriteContractPrepared';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -40,6 +27,18 @@ export default function Home() {
   // Reference: https://www.npmjs.com/package/@swisstronik/web3-plugin-swisstronik
   // web3.registerPlugin(new SwisstronikPlugin());
 
+  async function handleButtonClick() {
+    const countryName = 'Nigerian';
+    const reducedHash = hashCountryName(countryName);
+    console.log(reducedHash);
+    await testGenerateProof({
+      year: '1990',
+      month: '6',
+      day: '12',
+      nationality_hash: 10383936915116340591n,
+      voter_id: '120000',
+    });
+  }
   return (
     <>
       <Head>
@@ -50,7 +49,10 @@ export default function Home() {
         <link href="https://fonts.cdnfonts.com/css/rogan" rel="stylesheet" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <div>
+        <button onClick={handleButtonClick} className="">
+          try something
+        </button>
+        {/* <div>
           <Connect />
           {account.isConnected && (
             <>
@@ -117,6 +119,8 @@ export default function Home() {
             </>
           )}
         </div>
+          }
+        </div> */}
       </main>
     </>
   );
