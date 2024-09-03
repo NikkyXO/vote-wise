@@ -28,3 +28,14 @@ To learn more about [ZKsync](https://zksync.io) or [Web3.js](https://web3js.org/
 - [Next.js Documentation](https://nextjs.org/docs) learn about Next.js features and API.
 - npm i web3 web3-plugin-zksync 
  - npm i @swisstronik/web3-plugin-swisstronik
+
+16658931445127996590
+
+Verifying contract "contracts/Vote.sol:Vote" for network lisk-sepolia...
+Successfully verified contract "contracts/Vote.sol:Vote" for network lisk-sepolia:
+  - https://sepolia-blockscout.lisk.com//address/0x3D64674d27F18Bb7E1766408A5C4D245660e1A5f#code
+  
+
+Verifying contract "contracts/VoteFactory.sol:VotingFactory" for network lisk-sepolia...
+Successfully verified contract "contracts/VoteFactory.sol:VotingFactory" for network lisk-sepolia:
+  - https://sepolia-blockscout.lisk.com//address/0x0dF92B6B72AaF0DA51607bF6CAbDBF7cb6457aB5#code
