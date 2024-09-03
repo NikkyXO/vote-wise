@@ -12,7 +12,11 @@ import Overlay from '../Overlay/Overlay';
 import DateOfBirth from './DateOfBirth';
 import WalletAddress from './WalletAddress';
 
-function Onboarding() {
+import UserProof from '../../utils/RegisterUser';
+
+const Onboarding: React.FC<{ eligibilitySource: string }> = ({
+  eligibilitySource,
+}) => {
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<Number>(1);
@@ -20,11 +24,7 @@ function Onboarding() {
   const handleOpenOverlay = () => setShowOverlay(true);
   const handleCloseOverlay = () => setShowOverlay(false);
 
-  //   const handleCloseOverlay = () => {
-  //     setTimeout(() => {
-  //       setShowOverlay(false);
-  //     }, 5000);
-  //   };
+  const userProof = new UserProof(eligibilitySource);
 
   return (
     <LocationProvider>
@@ -110,6 +110,6 @@ function Onboarding() {
       </div>
     </LocationProvider>
   );
-}
+};
 
 export default Onboarding;

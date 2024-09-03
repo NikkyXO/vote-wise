@@ -1,7 +1,5 @@
 import crypto from 'crypto';
 import * as dotenv from 'dotenv';
-import { promises as fs } from 'fs';
-import path from 'path';
 import {
   CompilationArtifacts,
   Proof,
@@ -23,8 +21,10 @@ interface UserData {
 
 class UserProof {
   private zokratesProvider!: ZoKratesProvider;
+  private source: string;
 
-  constructor() {
+  constructor(source: string) {
+    this.source = source;
     this.initializeZoKrates();
   }
 
@@ -35,16 +35,12 @@ class UserProof {
 
   public async registerUser(data: UserData): Promise<string> {
     try {
-      // Resolve the full path to the eligibility.zok file
-      const filePath = path.join(process.cwd(), 'src/util/eligibility.zok');
-      const source: string = await fs.readFile(filePath, 'utf8');
-
-      // Compilation
-      const artifacts: CompilationArtifacts =
-        this.zokratesProvider.compile(source);
+      // Use this.source instead of reading the file again
+      const artifacts: CompilationArtifacts = this.zokratesProvider.compile(
+        this.source
+      );
       console.log('Circuit compiled successfully.');
 
-      // Computation
       const { year, month, day, voter_id, reducedHash } = data;
       const { witness } = this.zokratesProvider.computeWitness(artifacts, [
         year,
@@ -54,19 +50,16 @@ class UserProof {
         reducedHash.toString(),
       ]);
 
-      // Run setup
       const keypair: SetupKeypair = this.zokratesProvider.setup(
         artifacts.program
       );
 
-      // Generate proof
       const proof: Proof = this.zokratesProvider.generateProof(
         artifacts.program,
         witness,
         keypair.pk
       );
 
-      // Encrypt proof values and return as secret key
       const secretKey = this.encryptProof(proof, keypair);
       console.log(
         'User registered successfully with encrypted secret key:',
