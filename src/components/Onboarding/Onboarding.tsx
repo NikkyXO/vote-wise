@@ -1,13 +1,30 @@
 import Image from 'next/image';
 
+import { useState } from 'react';
 import {
   avatar,
   businessman,
   logo,
   notification,
 } from '../../../public/images/index.js';
+import Overlay from '../Overlay/Overlay';
+import DateOfBirth from './DateOfBirth';
+import WalletAddress from './WalletAddress';
 
 function Onboarding() {
+  const [showOverlay, setShowOverlay] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [activeModal, setActiveModal] = useState<Number>(1);
+
+  const handleOpenOverlay = () => setShowOverlay(true);
+  const handleCloseOverlay = () => setShowOverlay(false);
+
+  //   const handleCloseOverlay = () => {
+  //     setTimeout(() => {
+  //       setShowOverlay(false);
+  //     }, 5000);
+  //   };
+
   return (
     <div className="w-full h-screen bg-primary  text-white box-border ">
       {/* Top section  */}
@@ -67,6 +84,24 @@ function Onboarding() {
           />
         </div>
       </section>
+
+      {/* Overlay Component */}
+      {activeModal === 1 && showOverlay && (
+        <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+          <WalletAddress
+            handleCloseOverlay={handleCloseOverlay}
+            setActiveModal={setActiveModal}
+          />
+        </Overlay>
+      )}
+      {activeModal === 2 && showOverlay && (
+        <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+          <DateOfBirth
+            handleCloseOverlay={handleCloseOverlay}
+            setActiveModal={setActiveModal}
+          />
+        </Overlay>
+      )}
     </div>
   );
 }
