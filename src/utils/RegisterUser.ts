@@ -53,7 +53,7 @@ class UserProof {
             );
 
             // Encrypt proof values and return as secret key
-            const secretKey = this.encryptProof(proof);
+            const secretKey = this.encryptProof(proof, keypair);
             console.log("User registered successfully with encrypted secret key:", secretKey);
 
             return secretKey;
