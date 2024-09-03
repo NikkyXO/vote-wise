@@ -9,7 +9,11 @@ import {
 } from '../../../public/images/index.js';
 import LocationProvider from '../context/LocationContext';
 import Overlay from '../Overlay/Overlay';
+import City from './City';
+import CompleteRegistration from './CompleteRegistration';
 import DateOfBirth from './DateOfBirth';
+import Nationality from './Nationality';
+import SuccessPage from './SuccessPage';
 import WalletAddress from './WalletAddress';
 
 function Onboarding() {
@@ -19,12 +23,6 @@ function Onboarding() {
 
   const handleOpenOverlay = () => setShowOverlay(true);
   const handleCloseOverlay = () => setShowOverlay(false);
-
-  //   const handleCloseOverlay = () => {
-  //     setTimeout(() => {
-  //       setShowOverlay(false);
-  //     }, 5000);
-  //   };
 
   return (
     <LocationProvider>
@@ -58,9 +56,9 @@ function Onboarding() {
           </div>
         </section>
         {/* Lower Section  */}
-        <section className="w-full h-[85%] flex flex-row justify-between">
+        <section className="w-full h-[85%] flex flex-row justify-between px-8">
           <div className="w-[58%] h-full ">
-            <div className="w-[92%] h-[48%] z-20 ml-[10%] mt-[10%]">
+            <div className="w-[100%] h-[48%] z-20  mt-[10%]">
               <div className="text-txt-64 font-700">
                 Revolutionizing the Way You Vote
               </div>
@@ -85,7 +83,7 @@ function Onboarding() {
             <Image
               src={businessman}
               alt="Notification Icon"
-              style={{ width: '75%', height: '100%' }}
+              style={{ width: '90%', height: '100%' }}
             />
           </div>
         </section>
@@ -102,6 +100,38 @@ function Onboarding() {
         {activeModal === 2 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <DateOfBirth
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 3 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <Nationality
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 4 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <City
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 5 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <CompleteRegistration
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 6 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <SuccessPage
               handleCloseOverlay={handleCloseOverlay}
               setActiveModal={setActiveModal}
             />

@@ -10,12 +10,12 @@ const DateOfBirth: React.FC<DateOfBirthProps> = ({
   setActiveModal,
 }) => {
   const handleContinue = () => {
-    handleCloseOverlay();
-    // setActiveModal(2);
+    // handleCloseOverlay();
+    setActiveModal(3);
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg relative w-[30%] h-[50%]  text-black text-center ">
+    <div className="bg-white p-4 rounded-lg relative w-[30%] h-[50%]  text-black text-center mt-[10%] ">
       <div className="w-full mt-10">
         <div>
           <div className="text-txt-24 font-bold">Enter your date of birth</div>
