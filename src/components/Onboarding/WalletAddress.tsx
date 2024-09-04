@@ -15,7 +15,7 @@ const WalletAddress: React.FC<WalletAddressProps> = ({
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg relative w-[30%] h-[50%]  text-black text-center ">
+    <div className="bg-white p-4 rounded-lg relative w-[30%] h-[50%]  text-black text-center mt-[10%] ">
       <div className="w-full mt-10">
         <div>
           <div className="text-txt-24 font-bold">Let&rsquo;s get you registered!</div>

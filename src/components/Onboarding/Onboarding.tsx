@@ -11,7 +11,15 @@ import {
 } from '../../../public/images/index.js';
 import LocationProvider from '../context/LocationContext';
 import Overlay from '../Overlay/Overlay';
+import CancellationConfirmation from './CancellationConfirmation';
+import City from './City';
+import CompleteRegistration from './CompleteRegistration';
+import CopySecretKey from './CopySecretKey';
+import CopySuccess from './CopySuccess';
 import DateOfBirth from './DateOfBirth';
+import Nationality from './Nationality';
+import SuccessPage from './SuccessPage';
+import VerifySecretKey from './VerifySecretKey';
 import WalletAddress from './WalletAddress';
 
 import UserProof from '../../utils/RegisterUser';
@@ -23,23 +31,15 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<Number>(1);
+  const [showConfirmationModal, setShowConfirmationModal] =
+    useState<boolean>(false);
+  const [showCopySuccessModal, setShowCopySuccessModal] =
+    useState<boolean>(false);
 
   const handleOpenOverlay = () => setShowOverlay(true);
   const handleCloseOverlay = () => setShowOverlay(false);
 
-  const userProof = new UserProof(eligibilitySource);
-  const { account } = useEthereum();
-  // const reducedHash = hashCountryName(CountryName)
-
-  const userData = {
-    year: '1999',
-    month: '02',
-    day: '24',
-    voter_id: '100002',
-    country: '0x',
-    address: 'zamfara',
-  };
-
+  const handleVerify = () => {};
 
   return (
     <LocationProvider>
@@ -73,9 +73,9 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
           </div>
         </section>
         {/* Lower Section  */}
-        <section className="w-full h-[85%] flex flex-row justify-between">
+        <section className="w-full h-[85%] flex flex-row justify-between px-8">
           <div className="w-[58%] h-full ">
-            <div className="w-[92%] h-[48%] z-20 ml-[10%] mt-[10%]">
+            <div className="w-[100%] h-[48%] z-20  mt-[10%]">
               <div className="text-txt-64 font-700">
                 Revolutionizing the Way You Vote
               </div>
@@ -90,7 +90,10 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
                 >
                   Register
                 </button>
-                <button className="px-3 py-2 ml-2 rounded-lg text-white">
+                <button
+                  className="px-3 py-2 ml-2 rounded-lg text-white"
+                  onClick={handleVerify}
+                >
                   verify
                 </button>
               </div>
@@ -100,7 +103,7 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
             <Image
               src={businessman}
               alt="Notification Icon"
-              style={{ width: '75%', height: '100%' }}
+              style={{ width: '90%', height: '100%' }}
             />
           </div>
         </section>
@@ -117,6 +120,72 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
         {activeModal === 2 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <DateOfBirth
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 3 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <Nationality
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 4 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <City
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 5 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <CompleteRegistration
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 6 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <SuccessPage
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 7 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <CopySecretKey
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+              setShowConfirmationModal={setShowConfirmationModal}
+              setShowCopySuccessModal={setShowCopySuccessModal}
+            >
+              <>
+                <CancellationConfirmation
+                  handleCloseOverlay={handleCloseOverlay}
+                  setActiveModal={setActiveModal}
+                  setShowConfirmationModal={setShowConfirmationModal}
+                  showConfirmationModal={showConfirmationModal}
+                />
+                <CopySuccess
+                  handleCloseOverlay={handleCloseOverlay}
+                  setActiveModal={setActiveModal}
+                  setShowCopySuccessModal={setShowCopySuccessModal}
+                  showCopySuccessModal={showCopySuccessModal}
+                />
+              </>
+            </CopySecretKey>
+          </Overlay>
+        )}
+
+        {activeModal === 8 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <VerifySecretKey
               handleCloseOverlay={handleCloseOverlay}
               setActiveModal={setActiveModal}
             />
