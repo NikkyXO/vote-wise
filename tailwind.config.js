@@ -39,6 +39,9 @@ module.exports = {
         400: '400',
         700: '700',
       },
+      backgroundImage: {
+        'HomeImage': "url('/public/images/bgHome.png')"
+      }
     },
   },
   variants: {
