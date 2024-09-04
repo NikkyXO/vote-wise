@@ -21,6 +21,7 @@ const City: React.FC<CityProps> = ({ handleCloseOverlay, setActiveModal }) => {
   } = useLocalityHook();
 
   const handleStateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(event.target.value);
     setSelectedState(event.target.value);
     setActiveModal(4);
   };
@@ -44,7 +45,7 @@ const City: React.FC<CityProps> = ({ handleCloseOverlay, setActiveModal }) => {
                 onChange={handleStateChange}
                 className="border w-full p-2 rounded scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-200"
               >
-                <option value=""></option>
+                <option value="">{selectedState}</option>
                 {states.map((state) => (
                   <option key={state} value={state}>
                     {state}

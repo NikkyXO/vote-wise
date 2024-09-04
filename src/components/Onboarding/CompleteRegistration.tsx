@@ -1,11 +1,19 @@
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect } from 'react';
+import { keccak256 } from 'web3-utils';
 import { loader } from '../../../public/images';
+import { useEthereum } from '../Context';
 import { useLocalityHook } from '../context/LocationContext';
+import { VoteContractConfig } from '../contracts';
 
 interface CompleteRegistrationProps {
   handleCloseOverlay: () => void;
   setActiveModal: Dispatch<SetStateAction<Number>>;
+}
+
+interface CountryData {
+  country: string;
+  states: string[];
 }
 
 const CompleteRegistration: React.FC<CompleteRegistrationProps> = ({
@@ -19,10 +27,34 @@ const CompleteRegistration: React.FC<CompleteRegistrationProps> = ({
     setStates,
     selectedState,
     setSelectedState,
+    dob,
+    setIsError,
+    setErrorMessage,
   } = useLocalityHook();
+
+  const { account, getZKsync } = useEthereum();
+
+  const VerifyData = async () => {
+    const zkSync = getZKsync();
+    if (zkSync) {
+      const contract = new zkSync.L2.eth.Contract(
+        VoteContractConfig.abi,
+        VoteContractConfig.address
+      );
+      const hashAddress = keccak256(account.address as string);
+      console.log({ hashAddress });
+      const isVerified = await contract.methods
+        .addVerifiedVoter(hashAddress)
+        .call();
+      console.log(isVerified);
+      return isVerified;
+    }
+  };
 
   useEffect(() => {
     setTimeout(() => {
+      console.log(selectedCountry, selectedState, dob);
+
       setActiveModal(5);
     }, 2000);
   }, []);

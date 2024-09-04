@@ -27,8 +27,8 @@ const SuccessPage: React.FC<SuccessPageProps> = ({
 
   useEffect(() => {
     setTimeout(() => {
-      // handleCloseOverlay();
-      setActiveModal(7);
+      handleCloseOverlay();
+      // setActiveModal(6);
     }, 2000);
   }, []);
 

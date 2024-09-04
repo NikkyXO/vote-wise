@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import countriesAndCities from '../../data/countriesAndCities.json';
 import { useLocalityHook } from '../context/LocationContext';
 
@@ -40,6 +40,12 @@ const Nationality: React.FC<NationalityProps> = ({
 
   const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const country = event.target.value;
+
+    if (country !== 'Nigeria') {
+      setIsError(true);
+      setErrorMessage('Only Nigeria is supported currently!');
+      return;
+    }
     setSelectedCountry(country);
 
     const selectedCountryData = countriesAndCities.find(
@@ -50,6 +56,11 @@ const Nationality: React.FC<NationalityProps> = ({
     setSelectedState(''); // Reset state selection when country changes
     setActiveModal(3);
   };
+
+  useEffect(() => {
+    setIsError(false);
+    setErrorMessage('');
+  }, []);
 
   return (
     <div className="bg-white p-4 rounded-lg relative w-[30%] h-[50%]  text-black text-center mt-[7%] ">

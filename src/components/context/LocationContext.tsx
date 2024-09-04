@@ -21,6 +21,8 @@ interface LocationContextType {
   setIsError: Dispatch<SetStateAction<boolean>>;
   errorMessage: string;
   setErrorMessage: (value: string) => void;
+  dob: string;
+  setDob: (value: string) => void;
 }
 
 const defaultContextValue: LocationContextType = {
@@ -34,6 +36,8 @@ const defaultContextValue: LocationContextType = {
   errorMessage: '',
   setIsError: () => false,
   setErrorMessage: () => {},
+  dob: '',
+  setDob: () => {},
 };
 
 export const LocationContext =
@@ -48,6 +52,7 @@ const LocationProvider: React.FC<LocationProviderProps> = ({ children }) => {
   const [selectedState, setSelectedState] = useState<string>('');
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [dob, setDob] = useState<string>('');
 
   return (
     <LocationContext.Provider
@@ -62,6 +67,8 @@ const LocationProvider: React.FC<LocationProviderProps> = ({ children }) => {
         setIsError,
         errorMessage,
         setErrorMessage,
+        dob,
+        setDob,
       }}
     >
       {children}
