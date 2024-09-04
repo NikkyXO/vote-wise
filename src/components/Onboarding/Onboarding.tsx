@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { keccak256 } from 'web3-utils';
 import { useEthereum } from './../Context';
 
 import { useState } from 'react';
@@ -20,33 +19,11 @@ import DateOfBirth from './DateOfBirth';
 import Nationality from './Nationality';
 import SuccessPage from './SuccessPage';
 import VerifySecretKey from './VerifySecretKey';
-import WalletAddress from './WalletAddress';
 
-import UserProof from '../../utils/RegisterUser';
-import { hashCountryName } from '@/utils/hashCountryName.js';
 import { Connect } from '../Connect';
-import { useAsync } from '@/hooks/useAsync';
 import { VoteContractConfig } from '../contracts';
 
-const VerifyData = async() => {
-  const { getZKsync } = useEthereum();
-
-    const zkSync = getZKsync();
-    if (zkSync) {
-      const contract = new zkSync.L2.eth.Contract(
-        VoteContractConfig.abi,
-        VoteContractConfig.address
-      );
-      const candidates = await contract.methods.candidates().call();
-      console.log(candidates);
-      return candidates;
-    }
-
-};
-
-const Onboarding: React.FC<{ eligibilitySource: string }> = ({
-  eligibilitySource,
-}) => {
+const Onboarding: React.FC<{ eligibilitySource: string }> = () => {
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<Number>(1);
@@ -58,6 +35,19 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
   const handleOpenOverlay = () => setShowOverlay(true);
   const handleCloseOverlay = () => setShowOverlay(false);
   const { account, getZKsync } = useEthereum();
+
+  const VerifyData = async () => {
+    const zkSync = getZKsync();
+    if (zkSync) {
+      const contract = new zkSync.L2.eth.Contract(
+        VoteContractConfig.abi,
+        VoteContractConfig.address
+      );
+      const candidates = await contract.methods.candidates('0').call();
+      console.log(candidates);
+      return candidates;
+    }
+  };
 
   const handleVerify = () => {
     // handle smart contract interaction here
