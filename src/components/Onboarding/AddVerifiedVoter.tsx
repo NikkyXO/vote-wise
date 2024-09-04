@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useAsync } from '../../hooks/useAsync';
 import { VoteContractConfig } from './../contracts'
 import { useEthereum } from './../Context';
-import { Bytes } from 'web3-types';
+
 
 export function AddVerifiedVoter() {
   const [amount, setAmount] = useState('');

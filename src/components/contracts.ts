@@ -558,6 +558,91 @@ export const VoteAbi = [
     }
 ] as const;
 
+export const VoteFactoryAbi = [
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_voteContractAddress",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "voteContractAddress",
+                "type": "address"
+            }
+        ],
+        "name": "VoteContractCreated",
+        "type": "event"
+    },
+    {
+        "inputs": [],
+        "name": "CreateNewVote",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            }
+        ],
+        "name": "getVotingContractsByOwner",
+        "outputs": [
+            {
+                "internalType": "address[]",
+                "name": "",
+                "type": "address[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "votingContracts",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+] as const;
+
+
+
 
 export const daiContractConfig = {
   address: "0x604F0416e788779edB06c1A74a75FAad38384C6E", // ZKsync Era Sepolia Testnet DAI token address

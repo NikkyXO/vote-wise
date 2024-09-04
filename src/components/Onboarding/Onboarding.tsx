@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { keccak256 } from 'web3-utils';
+import { useEthereum } from './../Context';
 
 import { useState } from 'react';
 import {
@@ -26,16 +28,18 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
   const handleCloseOverlay = () => setShowOverlay(false);
 
   const userProof = new UserProof(eligibilitySource);
+  const { account } = useEthereum();
   // const reducedHash = hashCountryName(CountryName)
-  console.log({hash: hashCountryName('Nigerian')})
-  userProof.registerUser({
-    year: "1999",
-    month: "02",
-    day: "24",
-    voter_id: "100002",
-    reducedHash: "0x",
-    address: "zamfara"
-  })
+
+  const userData = {
+    year: '1999',
+    month: '02',
+    day: '24',
+    voter_id: '100002',
+    country: '0x',
+    address: 'zamfara',
+  };
+
 
   return (
     <LocationProvider>
