@@ -8,8 +8,6 @@ import {
 import LocationProvider from '../context/LocationContext';
 
 interface OverlayProps {
-  showOverlay: boolean;
-  onClose: () => void;
   children: React.ReactNode;
 }
 

@@ -2,17 +2,16 @@
 
 import { useState } from 'react';
 
-import { useAsync } from '../hooks/useAsync';
-import { VoteContractConfig } from './contracts';
-import { useEthereum } from './Context';
+import { useAsync } from '../../hooks/useAsync';
+import { VoteContractConfig } from '../contracts';
+import { useEthereum } from '../Context';
 
-export function WriteContract() {
-  const [amount, setAmount] = useState('');
+export function StartVoting() {
   const { account, getZKsync } = useEthereum();
   const zkSync = getZKsync();
   const {
     result: transaction,
-    execute: writeContract,
+    execute: StartVoting,
     inProgress,
     error,
   } = useAsync(async () => {
@@ -23,9 +22,7 @@ export function WriteContract() {
       VoteContractConfig.address
     );
 
-    // random address for testing, replace with contract address that you want to allow to spend your tokens
-    const spender = '0xa1cf087DB965Ab02Fb3CFaCe1f5c63935815f044';
-    const duration = 5;
+    const duration = 5
 
     const startVotingReceipt = await contract.methods
       .startVotingProcess(duration)
@@ -37,24 +34,8 @@ export function WriteContract() {
   });
 
   return (
+    // form not needed
     <div>
-      <h3>Approve allowance</h3>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          writeContract();
-        }}
-      >
-        <input
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          type="number"
-          placeholder="allowance amount"
-        />
-        <button type="submit">Approve</button>
-      </form>
-
-      {inProgress && <div>Transaction pending...</div>}
       {transaction && (
         <div>
           <div>Transaction Hash: {transaction?.transactionHash}</div>

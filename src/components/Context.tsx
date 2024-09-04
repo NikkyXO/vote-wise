@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { ZKsyncPlugin } from 'web3-plugin-zksync';
+import { ZKsyncPlugin, ContractFactory  } from 'web3-plugin-zksync';
 import { hexToNumberString, numberToHex, toHex } from 'web3-utils';
 
 type Chain = {
@@ -47,6 +47,7 @@ export const defaultChain =
   process.env.NODE_ENV === 'development' ? zkSyncSepoliaTestnet : zkSync;
 
 let zkSyncPlugin: ZKsyncPlugin | null = null;
+// let contractFactory: ContractFactory();
 
 interface EthereumContextValue {
   account:

@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         primary: '#4C1270',
       },
+      textColor: {
+        primary: '#4C1270', // Setting the primary text color
+      },
       fontFamily: {
         sans: ['Rogan', 'sans-serif'],
       },
@@ -23,13 +26,13 @@ module.exports = {
           },
         ],
         'txt-32': [
-          '1.5rem',
+          '1.75rem',
           {
             lineHeight: '1.2',
           },
         ],
         'txt-64': [
-          '3.2rem',
+          '3.75rem',
           {
             lineHeight: '1.2', //
           },
@@ -44,8 +47,13 @@ module.exports = {
       }
     },
   },
+  // variants: {
+  //   extend: {},
+  // },
   variants: {
-    extend: {},
+    scrollbar: ['rounded'], // To use rounded scrollbars
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }), // Add the tailwind-scrollbar plugin
+  ],
 };

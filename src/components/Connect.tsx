@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useEthereum } from './Context';
 
@@ -8,14 +8,20 @@ export function Connect() {
   return (
     <div>
       {account.isConnected ? (
-        <button onClick={disconnect}>
+        <button
+          className="px-3 py-2 rounded-lg bg-red-600 text-white"
+          onClick={disconnect}
+        >
           Disconnect wallet
         </button>
       ) : (
-        <button onClick={connect}>
-          Connect wallet
+        <button
+          className="px-3 py-2 rounded-lg bg-white text-primary"
+          onClick={connect}
+        >
+          Launch App
         </button>
       )}
     </div>
-  )
+  );
 }

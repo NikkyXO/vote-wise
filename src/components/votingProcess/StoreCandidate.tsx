@@ -2,17 +2,17 @@
 
 import { useState } from 'react';
 
-import { useAsync } from '../hooks/useAsync';
-import { VoteContractConfig } from './contracts';
-import { useEthereum } from './Context';
+import { useAsync } from '../../hooks/useAsync';
+import { VoteContractConfig } from './../contracts';
+import { useEthereum } from './../Context';
 
-export function WriteContract() {
+export function StoreCandidateInfo(fullName: string, partyName: string, imageUrl: string ) {
   const [amount, setAmount] = useState('');
   const { account, getZKsync } = useEthereum();
   const zkSync = getZKsync();
   const {
     result: transaction,
-    execute: writeContract,
+    execute: StoreCandidateInfo,
     inProgress,
     error,
   } = useAsync(async () => {
@@ -23,26 +23,23 @@ export function WriteContract() {
       VoteContractConfig.address
     );
 
-    // random address for testing, replace with contract address that you want to allow to spend your tokens
-    const spender = '0xa1cf087DB965Ab02Fb3CFaCe1f5c63935815f044';
-    const duration = 5;
-
-    const startVotingReceipt = await contract.methods
-      .startVotingProcess(duration)
+    const storeCandidateReceipt = await contract.methods
+      .storeCandidate(fullName, partyName, imageUrl)
       .send({ from: account.address as string });
     return {
-      transactionHash: startVotingReceipt.transactionHash,
-      startVotingReceipt,
+      transactionHash: storeCandidateReceipt.transactionHash,
+      storeCandidateReceipt,
     };
   });
 
   return (
+    // form not needed
     <div>
       <h3>Approve allowance</h3>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          writeContract();
+          StoreCandidateInfo();
         }}
       >
         <input
@@ -60,11 +57,11 @@ export function WriteContract() {
           <div>Transaction Hash: {transaction?.transactionHash}</div>
           <div>
             Transaction Receipt:
-            {transaction.startVotingReceipt ? (
+            {transaction.storeCandidateReceipt ? (
               <span>pending...</span>
             ) : (
               <pre>
-                {JSON.stringify(transaction.startVotingReceipt, null, 2)}
+                {JSON.stringify(transaction.storeCandidateReceipt, null, 2)}
               </pre>
             )}
           </div>
