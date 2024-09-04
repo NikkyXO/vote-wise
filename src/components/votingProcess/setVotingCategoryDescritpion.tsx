@@ -1,17 +1,16 @@
 'use client';
 
-import { useState } from 'react';
 
 import { useAsync } from '../../hooks/useAsync';
 import { VoteContractConfig } from '../contracts';
 import { useEthereum } from '../Context';
 
-export function EndVoting() {
+export function SetCategoryDescription(category: string, description: string) {
   const { account, getZKsync } = useEthereum();
   const zkSync = getZKsync();
   const {
     result: transaction,
-    execute: EndVoting,
+    execute: SetCategoryDescription,
     inProgress,
     error,
   } = useAsync(async () => {
@@ -22,12 +21,13 @@ export function EndVoting() {
       VoteContractConfig.address
     );
 
-    const endVotingReceipt = await contract.methods
-      .endVotingProcess()
+
+    const receipt = await contract.methods
+      .setVoteCategoryDescription(category, description)
       .send({ from: account.address as string });
     return {
-      transactionHash: endVotingReceipt.transactionHash,
-      endVotingReceipt,
+      transactionHash: receipt.transactionHash,
+     receipt,
     };
   });
 
@@ -39,11 +39,11 @@ export function EndVoting() {
           <div>Transaction Hash: {transaction?.transactionHash}</div>
           <div>
             Transaction Receipt:
-            {transaction.endVotingReceipt ? (
+            {transaction.receipt ? (
               <span>pending...</span>
             ) : (
               <pre>
-                {JSON.stringify(transaction.endVotingReceipt, null, 2)}
+                {JSON.stringify(transaction.receipt, null, 2)}
               </pre>
             )}
           </div>
