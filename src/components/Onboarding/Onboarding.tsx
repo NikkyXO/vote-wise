@@ -9,20 +9,30 @@ import {
 } from '../../../public/images/index.js';
 import LocationProvider from '../context/LocationContext';
 import Overlay from '../Overlay/Overlay';
+import CancellationConfirmation from './CancellationConfirmation';
 import City from './City';
 import CompleteRegistration from './CompleteRegistration';
+import CopySecretKey from './CopySecretKey';
+import CopySuccess from './CopySuccess';
 import DateOfBirth from './DateOfBirth';
 import Nationality from './Nationality';
 import SuccessPage from './SuccessPage';
+import VerifySecretKey from './VerifySecretKey';
 import WalletAddress from './WalletAddress';
 
 function Onboarding() {
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<Number>(1);
+  const [showConfirmationModal, setShowConfirmationModal] =
+    useState<boolean>(false);
+  const [showCopySuccessModal, setShowCopySuccessModal] =
+    useState<boolean>(false);
 
   const handleOpenOverlay = () => setShowOverlay(true);
   const handleCloseOverlay = () => setShowOverlay(false);
+
+  const handleVerify = () => {};
 
   return (
     <LocationProvider>
@@ -73,7 +83,10 @@ function Onboarding() {
                 >
                   Register
                 </button>
-                <button className="px-3 py-2 ml-2 rounded-lg text-white">
+                <button
+                  className="px-3 py-2 ml-2 rounded-lg text-white"
+                  onClick={handleVerify}
+                >
                   verify
                 </button>
               </div>
@@ -132,6 +145,40 @@ function Onboarding() {
         {activeModal === 6 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <SuccessPage
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+            />
+          </Overlay>
+        )}
+        {activeModal === 7 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <CopySecretKey
+              handleCloseOverlay={handleCloseOverlay}
+              setActiveModal={setActiveModal}
+              setShowConfirmationModal={setShowConfirmationModal}
+              setShowCopySuccessModal={setShowCopySuccessModal}
+            >
+              <>
+                <CancellationConfirmation
+                  handleCloseOverlay={handleCloseOverlay}
+                  setActiveModal={setActiveModal}
+                  setShowConfirmationModal={setShowConfirmationModal}
+                  showConfirmationModal={showConfirmationModal}
+                />
+                <CopySuccess
+                  handleCloseOverlay={handleCloseOverlay}
+                  setActiveModal={setActiveModal}
+                  setShowCopySuccessModal={setShowCopySuccessModal}
+                  showCopySuccessModal={showCopySuccessModal}
+                />
+              </>
+            </CopySecretKey>
+          </Overlay>
+        )}
+
+        {activeModal === 8 && showOverlay && (
+          <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
+            <VerifySecretKey
               handleCloseOverlay={handleCloseOverlay}
               setActiveModal={setActiveModal}
             />

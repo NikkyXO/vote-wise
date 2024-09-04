@@ -17,10 +17,10 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="UTF-8" />
-          <meta
+          {/* <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
-          />
+          /> */}
           <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
         </Head>
         <body>

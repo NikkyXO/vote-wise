@@ -13,7 +13,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({
   setActiveModal,
 }) => {
   const handleContinue = () => {
-    setActiveModal(5);
+    setActiveModal(7);
   };
 
   const {
@@ -27,8 +27,8 @@ const SuccessPage: React.FC<SuccessPageProps> = ({
 
   useEffect(() => {
     setTimeout(() => {
-      handleCloseOverlay();
-      window.location.reload();
+      // handleCloseOverlay();
+      setActiveModal(7);
     }, 2000);
   }, []);
 
@@ -39,8 +39,8 @@ const SuccessPage: React.FC<SuccessPageProps> = ({
           <Image
             src={success}
             alt="Notification Icon"
-            width={100}
-            height={100}
+            width={80}
+            height={80}
             className=""
           />
         </div>
