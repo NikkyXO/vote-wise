@@ -11,7 +11,7 @@ import {
     timer
 } from '../../../public/images/index.js';
 import LocationProvider from '../context/LocationContext';
-import Overlay from '../Overlay/Overlay';
+// import Overlay from '../Overlay/Overlay';
 import EventCards from './EventCards';
 import CandidatesPreview from './CandidatesPreview';
 import VoteGuide from './VoteGuide';

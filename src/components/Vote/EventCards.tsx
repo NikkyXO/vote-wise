@@ -8,7 +8,7 @@ interface UserProps {
     navPage:string// Optional property
   }
 
-const EventCards = ({title, desc, navPage}: UserProps) => {
+  const EventCards: React.FC<UserProps> = ({title, desc, navPage}) => {
   return (
     <div className="bg-white rounded-2xl max-h-28 shadow-lg shadow-gray-500 py-4 px-10  flex justify-center items-center relative">
         <div className="flex items-center gap-3 justify-between">
