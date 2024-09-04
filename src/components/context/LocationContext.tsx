@@ -23,6 +23,8 @@ interface LocationContextType {
   setErrorMessage: (value: string) => void;
   dob: string;
   setDob: (value: string) => void;
+  setShowSuccessModal: (value: boolean) => void;
+  showSuccessModal: boolean;
 }
 
 const defaultContextValue: LocationContextType = {
@@ -38,6 +40,8 @@ const defaultContextValue: LocationContextType = {
   setErrorMessage: () => {},
   dob: '',
   setDob: () => {},
+  setShowSuccessModal: () => {},
+  showSuccessModal: false,
 };
 
 export const LocationContext =
@@ -53,6 +57,7 @@ const LocationProvider: React.FC<LocationProviderProps> = ({ children }) => {
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [dob, setDob] = useState<string>('');
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
 
   return (
     <LocationContext.Provider
@@ -69,6 +74,8 @@ const LocationProvider: React.FC<LocationProviderProps> = ({ children }) => {
         setErrorMessage,
         dob,
         setDob,
+        setShowSuccessModal,
+        showSuccessModal,
       }}
     >
       {children}

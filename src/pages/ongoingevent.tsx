@@ -1,11 +1,7 @@
-import OngoingEvent from '@/components/Result/OngoingEvent';
+import OngoingEvent from '@/components/Result/OngoingEventScreenOne';
 
 const OngoingEventPage = () => {
-  return (
-    <OngoingEvent>
-      <div></div>
-    </OngoingEvent>
-  );
+  return <OngoingEvent></OngoingEvent>;
 };
 
 export default OngoingEventPage;
