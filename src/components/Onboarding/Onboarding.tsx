@@ -28,21 +28,6 @@ import { Connect } from '../Connect';
 import { useAsync } from '@/hooks/useAsync';
 import { VoteContractConfig } from '../contracts';
 
-const VerifyData = async() => {
-  const { getZKsync } = useEthereum();
-
-    const zkSync = getZKsync();
-    if (zkSync) {
-      const contract = new zkSync.L2.eth.Contract(
-        VoteContractConfig.abi,
-        VoteContractConfig.address
-      );
-      const candidates = await contract.methods.candidates().call();
-      console.log(candidates);
-      return candidates;
-    }
-
-};
 
 const Onboarding: React.FC<{ eligibilitySource: string }> = ({
   eligibilitySource,
@@ -59,6 +44,21 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
   const handleCloseOverlay = () => setShowOverlay(false);
   const { account, getZKsync } = useEthereum();
 
+  const VerifyData = async() => {
+      const zkSync = getZKsync();
+      if (zkSync) {
+        const contract = new zkSync.L2.eth.Contract(
+          VoteContractConfig.abi,
+          VoteContractConfig.address
+        );
+        const hashAddress = keccak256(account.address as string);
+        console.log({ hashAddress });
+        const isVerified = await contract.methods.isVoterVerified(hashAddress).call();
+        console.log(isVerified);
+        return isVerified;
+      }
+  
+  };
   const handleVerify = () => {
     // handle smart contract interaction here
     VerifyData();

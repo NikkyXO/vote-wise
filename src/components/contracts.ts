@@ -176,17 +176,6 @@ export const VoteAbi = [
         "type": "error"
     },
     {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "message",
-                "type": "string"
-            }
-        ],
-        "name": "VotingNotEnded",
-        "type": "error"
-    },
-    {
         "inputs": [],
         "name": "VotingNotYetEnded",
         "type": "error"
@@ -223,8 +212,21 @@ export const VoteAbi = [
     },
     {
         "anonymous": false,
-        "inputs": [],
-        "name": "VoteDescriptionSet",
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "userHash",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "ipfsUrl",
+                "type": "string"
+            }
+        ],
+        "name": "UserProofStored",
         "type": "event"
     },
     {
@@ -295,25 +297,6 @@ export const VoteAbi = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "candidateList",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
                 "internalType": "string",
                 "name": "",
                 "type": "string"
@@ -340,32 +323,6 @@ export const VoteAbi = [
                 "internalType": "uint256",
                 "name": "voteCount",
                 "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "category",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "description",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
             }
         ],
         "stateMutability": "view",
@@ -405,35 +362,19 @@ export const VoteAbi = [
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "getCollatedVotes",
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "userHash",
+                "type": "bytes32"
+            }
+        ],
+        "name": "getUserProof",
         "outputs": [
             {
-                "components": [
-                    {
-                        "internalType": "string",
-                        "name": "fullname",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "partyName",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "imageIpfsUrl",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "voteCount",
-                        "type": "uint256"
-                    }
-                ],
-                "internalType": "struct Vote.Candidate[]",
+                "internalType": "string",
                 "name": "",
-                "type": "tuple[]"
+                "type": "string"
             }
         ],
         "stateMutability": "view",
@@ -456,24 +397,6 @@ export const VoteAbi = [
             }
         ],
         "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "_category",
-                "type": "string"
-            },
-            {
-                "internalType": "string",
-                "name": "_description",
-                "type": "string"
-            }
-        ],
-        "name": "setVoteCategoryDescription",
-        "outputs": [],
-        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -521,6 +444,24 @@ export const VoteAbi = [
             }
         ],
         "name": "storeCandidate",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "userHash",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "string",
+                "name": "ipfsUrl",
+                "type": "string"
+            }
+        ],
+        "name": "storeUserProof",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -651,7 +592,7 @@ export const daiContractConfig = {
 } as const;
 
 export const VoteContractConfig = {
-	address: "0x0C20E45A25D7D1BB64586bE21EAe645069999835",
+	address: "0x3D64674d27F18Bb7E1766408A5C4D245660e1A5f", 
 	abi: VoteAbi,
   
   } as const;
