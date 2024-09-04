@@ -2,54 +2,49 @@
 
 import { useState, useEffect } from 'react';
 
-import { useAsync } from '../hooks/useAsync';
-import { useEthereum } from './Context';
-import { daiContractConfig, VoteContractConfig } from './contracts'
+import { useAsync } from '../../hooks/useAsync';
+import { useEthereum } from './../Context';
+import { daiContractConfig, VoteContractConfig } from './../contracts'
 
-export function ReadContract() {
+export function GetCandidates() {
   return (
     <div>
       <div>
-        <BalanceOf />
         <br />
-        <TotalSupply />
+        <GetCandidatesData />
       </div>
     </div>
   )
 }
 
-function TotalSupply() {
+function GetCandidatesData() {
 
   const { getZKsync } = useEthereum();
   const {
-    result: supply,
-    execute: fetchTotalSupply,
+    result: candidates,
+    execute: fetchCandidates,
     inProgress,
     error,
   } = useAsync(async () => {
     const zkSync = getZKsync();
     if (zkSync)
     {
-      const contract = new zkSync.L2.eth.Contract( daiContractConfig.abi, daiContractConfig.address);
-      const totalSupply = await contract.methods.totalSupply().call()
-
-
-      const voteContract = new zkSync.L2.eth.Contract( VoteContractConfig.abi, VoteContractConfig.address);
-      const isVoterverified = await voteContract.methods.isVoterVerified().call();
+      const contract = new zkSync.L2.eth.Contract( VoteContractConfig.abi, VoteContractConfig.address);
+      const candidates = await contract.methods.candidates().call();
       
-      return totalSupply;
+      return candidates;
     }
   });
 
   useEffect(() => {
-    fetchTotalSupply();
+    fetchCandidates();
   }, []);
 
   return (
     <div>
       <div>
-        Total Supply: {supply?.toString()}
-        <button onClick={fetchTotalSupply}>
+        candidates: {candidates?.toString()}
+        <button onClick={fetchCandidates}>
           {inProgress ? 'fetching...' : 'refetch'}
         </button>
       </div>

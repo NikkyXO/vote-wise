@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from 'react';
 
-import { daiContractConfig } from './contracts'
+import { VoteContractConfig } from './contracts';
 import { useEthereum } from './Context';
 
 type TransferLog = {
@@ -17,19 +17,87 @@ export function WatchContractEvents() {
   useEffect(() => {
     const zkSync = getZKsync();
     if (!zkSync) return;
-    
-    const contract = new zkSync.L2.eth.Contract(daiContractConfig.abi, daiContractConfig.address);
-    const transferEvent = contract.events.Transfer();
-    transferEvent.on('data', (event) => {
-        const { from, to, value } = event.returnValues;
-        setEvents(prevEvents => [...prevEvents, { from: from as string, to: to as string, amount: BigInt(value as number) }]);
+
+    const contract = new zkSync.L2.eth.Contract(
+      VoteContractConfig.abi,
+      VoteContractConfig.address
+    );
+    // const transferEvent = contract.events.Transfer();
+    const voteSuccessfulEvent = contract.events.VoteSuccesful();
+    const voteStartedEvent = contract.events.VotingStarted();
+    const voteEndedEvent = contract.events.VotingEnded();
+    voteSuccessfulEvent.on('data', (event) => {
+      const { from, to, value } = event.returnValues;
+      setEvents((prevEvents) => [
+        ...prevEvents,
+        {
+          from: from as string,
+          to: to as string,
+          amount: BigInt(value as number),
+        },
+      ]);
     });
-    
+
+    voteStartedEvent.on('data', (event) => {
+      const { from, to, value } = event.returnValues;
+      setEvents((prevEvents) => [
+        ...prevEvents,
+        {
+          from: from as string,
+          to: to as string,
+          amount: BigInt(value as number),
+        },
+      ]);
+    });
+
+    voteEndedEvent.on('data', (event) => {
+      const { from, to, value } = event.returnValues;
+      setEvents((prevEvents) => [
+        ...prevEvents,
+        {
+          from: from as string,
+          to: to as string,
+          amount: BigInt(value as number),
+        },
+      ]);
+    });
+
     return () => {
-        transferEvent.off('data', (event) => {
-            const { from, to, value } = event.returnValues;
-            setEvents(prevEvents => [...prevEvents, { from: from as string, to: to as string, amount: BigInt(value as number) }]);
-        });
+      voteSuccessfulEvent.off('data', (event) => {
+        const { from, to, value } = event.returnValues;
+        setEvents((prevEvents) => [
+          ...prevEvents,
+          {
+            from: from as string,
+            to: to as string,
+            amount: BigInt(value as number),
+          },
+        ]);
+      });
+
+      voteStartedEvent.off('data', (event) => {
+        const { from, to, value } = event.returnValues;
+        setEvents((prevEvents) => [
+          ...prevEvents,
+          {
+            from: from as string,
+            to: to as string,
+            amount: BigInt(value as number),
+          },
+        ]);
+      });
+
+      voteEndedEvent.off('data', (event) => {
+        const { from, to, value } = event.returnValues;
+        setEvents((prevEvents) => [
+          ...prevEvents,
+          {
+            from: from as string,
+            to: to as string,
+            amount: BigInt(value as number),
+          },
+        ]);
+      });
     };
   }, []);
 

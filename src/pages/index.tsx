@@ -1,11 +1,13 @@
 'use client';
 
 import styles from '@/styles/Home.module.css';
-import { testGenerateProof } from '@/utils';
-import { hashCountryName } from '@/utils/hashCountryName';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import { useEthereum } from '../components/Context';
+import OnboardingPage from './onboarding';
+import { Connect } from '@/components/Connect';
+import { Account } from '@/components/Account';
+import { Balance } from '@/components/Balance';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,18 +29,18 @@ export default function Home() {
   // Reference: https://www.npmjs.com/package/@swisstronik/web3-plugin-swisstronik
   // web3.registerPlugin(new SwisstronikPlugin());
 
-  async function handleButtonClick() {
-    const countryName = 'Nigerian';
-    const reducedHash = hashCountryName(countryName);
-    console.log(reducedHash);
-    await testGenerateProof({
-      year: '1990',
-      month: '6',
-      day: '12',
-      nationality_hash: 10383936915116340591n,
-      voter_id: '120000',
-    });
-  }
+  // async function handleButtonClick() {
+  //   const countryName = 'Nigerian';
+  //   const reducedHash = hashCountryName(countryName);
+  //   console.log(reducedHash);
+  //   await testGenerateProof({
+  //     year: '1990',
+  //     month: '6',
+  //     day: '12',
+  //     nationality_hash: 10383936915116340591n,
+  //     voter_id: '120000',
+  //   });
+  // }
   return (
     <>
       <Head>
@@ -49,10 +51,11 @@ export default function Home() {
         <link href="https://fonts.cdnfonts.com/css/rogan" rel="stylesheet" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <button onClick={handleButtonClick} className="">
+        {/* <button onClick={} className="">
           try something
-        </button>
-        {/* <div>
+        </button> */}
+        {/* <OnboardingPage eligibilitySource={''}/> */}
+        <div>
           <Connect />
           {account.isConnected && (
             <>
@@ -66,7 +69,7 @@ export default function Home() {
                 <br />
                 or update to a different contract address
               </p>
-              <NetworkSwitcher />
+              {/* <NetworkSwitcher /> */}
               <br />
               <hr />
               <h2>Account</h2>
@@ -77,50 +80,49 @@ export default function Home() {
               <Balance />
               <br />
               <hr />
-              <h2>Block Number</h2>
+              {/* <h2>Block Number</h2>
               <BlockNumber />
               <br />
               <hr />
               <h2>Read Contract</h2>
-              <ReadContract />
+              <ReadContract /> */}
               <br />
               <hr />
-              <h2>Send Transaction</h2>
+              {/* <h2>Send Transaction</h2>
               <SendTransaction />
               <br />
               <hr />
               <h2>Send Transaction (Prepared)</h2>
               <SendTransactionPrepared />
               <h2>Sign Message</h2>
-              <SignMessage />
+              <SignMessage /> */}
               <br />
               <hr />
-              <h2>Sign Typed Data</h2>
+              {/* <h2>Sign Typed Data</h2>
               <SignTypedData />
               <br />
               <hr />
               <h2>Token</h2>
-              <Token />
+              <Token /> */}
               <br />
               <hr />
-              <h2>Watch Contract Events</h2>
+              {/* <h2>Watch Contract Events</h2>
               <WatchContractEvents />
               <br />
               <hr />
-              <WatchPendingTransactions />
+              <WatchPendingTransactions /> */}
               <br />
               <hr />
               <h2>Write Contract</h2>
-              <WriteContract />
+              {/* <WriteContract />
               <br />
               <hr />
               <h2>Write Contract (Prepared)</h2>
-              <WriteContractPrepared />
+              <WriteContractPrepared /> */}
             </>
           )}
         </div>
-          }
-        </div> */}
+        </div>
       </main>
     </>
   );

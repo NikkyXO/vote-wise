@@ -13,6 +13,7 @@ import DateOfBirth from './DateOfBirth';
 import WalletAddress from './WalletAddress';
 
 import UserProof from '../../utils/RegisterUser';
+import { hashCountryName } from '@/utils/hashCountryName.js';
 
 const Onboarding: React.FC<{ eligibilitySource: string }> = ({
   eligibilitySource,
@@ -25,6 +26,16 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
   const handleCloseOverlay = () => setShowOverlay(false);
 
   const userProof = new UserProof(eligibilitySource);
+  // const reducedHash = hashCountryName(CountryName)
+  console.log({hash: hashCountryName('Nigerian')})
+  userProof.registerUser({
+    year: "1999",
+    month: "02",
+    day: "24",
+    voter_id: "100002",
+    reducedHash: "0x",
+    address: "zamfara"
+  })
 
   return (
     <LocationProvider>
