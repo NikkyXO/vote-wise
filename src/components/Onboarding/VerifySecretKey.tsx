@@ -11,7 +11,7 @@ const VerifySecretKey: React.FC<VerifySecretKeyProps> = ({
   setActiveModal,
 }) => {
   const handleContinue = () => {
-    setActiveModal(5);
+    setActiveModal(8);
   };
 
   const {

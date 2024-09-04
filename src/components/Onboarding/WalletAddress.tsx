@@ -11,14 +11,16 @@ const WalletAddress: React.FC<WalletAddressProps> = ({
 }) => {
   const handleContinue = () => {
     // handleCloseOverlay();
-    setActiveModal(2);
+    setActiveModal(1);
   };
 
   return (
     <div className="bg-white p-4 rounded-lg relative w-[30%] h-[50%]  text-black text-center mt-[10%] ">
       <div className="w-full mt-10">
         <div>
-          <div className="text-txt-24 font-bold">Let&rsquo;s get you registered!</div>
+          <div className="text-txt-24 font-bold">
+            Let&rsquo;s get you registered!
+          </div>
           <div className="text-sm">Input a unique wallet address</div>
         </div>
       </div>

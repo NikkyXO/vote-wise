@@ -23,7 +23,7 @@ const CompleteRegistration: React.FC<CompleteRegistrationProps> = ({
 
   useEffect(() => {
     setTimeout(() => {
-      setActiveModal(6);
+      setActiveModal(5);
     }, 2000);
   }, []);
 

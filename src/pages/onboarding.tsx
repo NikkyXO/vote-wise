@@ -1,3 +1,4 @@
+import { useEthereum } from '@/components/Context';
 import Onboarding from '@/components/Onboarding/Onboarding';
 
 import { promises as fs } from 'fs';
@@ -15,9 +16,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-const OnboardingPage: React.FC<{ eligibilitySource: string }> = ({
-  eligibilitySource,
-}) => {
+const OnboardingPage: React.FC<{
+  eligibilitySource: string;
+}> = ({ eligibilitySource }) => {
+  const { account } = useEthereum();
   return <Onboarding eligibilitySource={eligibilitySource} />;
 };
 

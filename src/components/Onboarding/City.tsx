@@ -8,7 +8,7 @@ interface CityProps {
 
 const City: React.FC<CityProps> = ({ handleCloseOverlay, setActiveModal }) => {
   const handleContinue = () => {
-    setActiveModal(5);
+    setActiveModal(4);
   };
 
   const {
@@ -22,6 +22,7 @@ const City: React.FC<CityProps> = ({ handleCloseOverlay, setActiveModal }) => {
 
   const handleStateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedState(event.target.value);
+    setActiveModal(4);
   };
 
   return (

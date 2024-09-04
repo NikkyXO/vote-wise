@@ -17,7 +17,7 @@ const Nationality: React.FC<NationalityProps> = ({
       setErrorMessage('Please select a country');
       return;
     }
-    setActiveModal(4);
+    setActiveModal(3);
   };
 
   interface CountryData {
@@ -48,7 +48,7 @@ const Nationality: React.FC<NationalityProps> = ({
 
     setStates(selectedCountryData ? selectedCountryData.states : []);
     setSelectedState(''); // Reset state selection when country changes
-    setActiveModal(4);
+    setActiveModal(3);
   };
 
   return (

@@ -47,7 +47,7 @@ export const defaultChain =
   process.env.NODE_ENV === 'development' ? zkSyncSepoliaTestnet : zkSync;
 
 let zkSyncPlugin: ZKsyncPlugin | null = null;
-let contractFactory: ContractFactory();
+// let contractFactory: ContractFactory();
 
 interface EthereumContextValue {
   account:

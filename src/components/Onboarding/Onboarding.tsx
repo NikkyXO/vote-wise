@@ -24,6 +24,25 @@ import WalletAddress from './WalletAddress';
 
 import UserProof from '../../utils/RegisterUser';
 import { hashCountryName } from '@/utils/hashCountryName.js';
+import { Connect } from '../Connect';
+import { useAsync } from '@/hooks/useAsync';
+import { VoteContractConfig } from '../contracts';
+
+const VerifyData = async() => {
+  const { getZKsync } = useEthereum();
+
+    const zkSync = getZKsync();
+    if (zkSync) {
+      const contract = new zkSync.L2.eth.Contract(
+        VoteContractConfig.abi,
+        VoteContractConfig.address
+      );
+      const candidates = await contract.methods.candidates().call();
+      console.log(candidates);
+      return candidates;
+    }
+
+};
 
 const Onboarding: React.FC<{ eligibilitySource: string }> = ({
   eligibilitySource,
@@ -38,8 +57,12 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
 
   const handleOpenOverlay = () => setShowOverlay(true);
   const handleCloseOverlay = () => setShowOverlay(false);
+  const { account, getZKsync } = useEthereum();
 
-  const handleVerify = () => {};
+  const handleVerify = () => {
+    // handle smart contract interaction here
+    VerifyData();
+  };
 
   return (
     <LocationProvider>
@@ -83,13 +106,17 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
                 A cutting-edge voting platform that leverages blockchain
                 technology to deliver a secure voting experience
               </div>
-              <div className="mt-3">
-                <button
-                  className="px-3 py-2 rounded-lg bg-white text-primary"
-                  onClick={handleOpenOverlay}
-                >
-                  Register
-                </button>
+              <div className="mt-3 flex flex-row gap-x-2">
+                {account.isConnected ? (
+                  <button
+                    className="px-3 py-2 rounded-lg bg-white text-primary"
+                    onClick={handleOpenOverlay}
+                  >
+                    Register
+                  </button>
+                ) : (
+                  <Connect />
+                )}
                 <button
                   className="px-3 py-2 ml-2 rounded-lg text-white"
                   onClick={handleVerify}
@@ -109,15 +136,15 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
         </section>
 
         {/* Overlay Component */}
-        {activeModal === 1 && showOverlay && (
+        {/* {activeModal === 1 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <WalletAddress
               handleCloseOverlay={handleCloseOverlay}
               setActiveModal={setActiveModal}
             />
           </Overlay>
-        )}
-        {activeModal === 2 && showOverlay && (
+        )} */}
+        {activeModal === 1 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <DateOfBirth
               handleCloseOverlay={handleCloseOverlay}
@@ -125,7 +152,7 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
             />
           </Overlay>
         )}
-        {activeModal === 3 && showOverlay && (
+        {activeModal === 2 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <Nationality
               handleCloseOverlay={handleCloseOverlay}
@@ -133,7 +160,7 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
             />
           </Overlay>
         )}
-        {activeModal === 4 && showOverlay && (
+        {activeModal === 3 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <City
               handleCloseOverlay={handleCloseOverlay}
@@ -141,7 +168,7 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
             />
           </Overlay>
         )}
-        {activeModal === 5 && showOverlay && (
+        {activeModal === 4 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <CompleteRegistration
               handleCloseOverlay={handleCloseOverlay}
@@ -149,7 +176,7 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
             />
           </Overlay>
         )}
-        {activeModal === 6 && showOverlay && (
+        {activeModal === 5 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <SuccessPage
               handleCloseOverlay={handleCloseOverlay}
@@ -157,7 +184,7 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
             />
           </Overlay>
         )}
-        {activeModal === 7 && showOverlay && (
+        {activeModal === 6 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <CopySecretKey
               handleCloseOverlay={handleCloseOverlay}
@@ -183,7 +210,7 @@ const Onboarding: React.FC<{ eligibilitySource: string }> = ({
           </Overlay>
         )}
 
-        {activeModal === 8 && showOverlay && (
+        {activeModal === 7 && showOverlay && (
           <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}>
             <VerifySecretKey
               handleCloseOverlay={handleCloseOverlay}

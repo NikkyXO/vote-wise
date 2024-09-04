@@ -13,7 +13,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({
   setActiveModal,
 }) => {
   const handleContinue = () => {
-    setActiveModal(7);
+    setActiveModal(6);
   };
 
   const {

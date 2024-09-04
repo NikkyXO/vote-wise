@@ -19,7 +19,7 @@ const CopySecretKey: React.FC<CopySecretKeyProps> = ({
   children,
 }) => {
   const handleContinue = () => {
-    setActiveModal(9);
+    setActiveModal(7);
   };
   const handleCopy = async () => {
     if (inputRef.current) {
