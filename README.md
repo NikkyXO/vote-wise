@@ -1,11 +1,12 @@
 
 
 
-**THERE IS NO JUSTOverview
-The Web3 Voting DApp is a decentralized application designed to leverage blockchain technology for secure, transparent, and tamper-proof voting processes. This DApp aims to modernize traditional voting systems by providing a decentralized platform where voters can cast their votes directly on the blockchain. The application ensures that every vote is immutable, transparent, and accessible only to authorized participants, eliminating the risks of fraud and enhancing voter confidence.
+## THERE IS NO JUST Overview
 
-Key Features
-Decentralized Voting:
+**The Web3 Voting DApp is a decentralized application designed to leverage blockchain technology for secure, transparent, and tamper-proof voting processes. This DApp aims to modernize traditional voting systems by providing a decentralized platform where voters can cast their votes directly on the blockchain. The application ensures that every vote is immutable, transparent, and accessible only to authorized participants, eliminating the risks of fraud and enhancing voter confidence.**
+
+### Key Features
+##### Decentralized Voting:
 
 The DApp is built on the Ethereum blockchain, ensuring that votes are recorded in a decentralized, immutable ledger. This approach removes the need for central authorities, reducing the risk of vote manipulation.
 Voter Eligibility Verification:
@@ -76,3 +77,6 @@ Successfully verified contract "contracts/Vote.sol:Vote" for network lisk-sepoli
 Verifying contract "contracts/VoteFactory.sol:VotingFactory" for network lisk-sepolia...
 Successfully verified contract "contracts/VoteFactory.sol:VotingFactory" for network lisk-sepolia:
   - https://sepolia-blockscout.lisk.com//address/0x0dF92B6B72AaF0DA51607bF6CAbDBF7cb6457aB5#code
+
+
+Smart Contract: https://github.com/NikkyXO/vote-wise-smart
