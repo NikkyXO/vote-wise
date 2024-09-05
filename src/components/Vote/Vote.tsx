@@ -31,7 +31,7 @@ type Event = {
     candidateName: string;
     candidateParty: string;
     candidateIdeology: string;
-    candidateImage: string; // Corrected spelling here
+    candidateImage: string
   };
 
   let CandidateArr: Candidate[] =[
@@ -84,64 +84,61 @@ type Event = {
         {/* <Overlay showOverlay={showOverlay} onClose={handleCloseOverlay}> */}
         <div className="bg-black opacity-70 z-[-2] w-full h-full fixed">
 
+    </div>
+<Image src={bgHome} alt="Background" className="fixed -z-10 w-[100vw] h-[100vh]"  />
+<div className='bg-HomeImage w-full h-full z-20'>
+<section className="w-full py-2 lg:px-8 px-2 h-[15%] flex flex-row justify-between pt-8">
+      <div>
+        <Image src={logo} alt="Logo" className='w-20 sm:w-36 xl:w-48 h-6 xl:h-12 sm:h-10'  />
+      </div>
+      <div className="flex flex-row">
+        <div className="mr-10 text-xs sm:text-txt-24 xl:text-3xl text-white  border-white border-b-[2px] font-400">Voting Event</div>
+        <div className="text-sm sm:text-txt-24 xl:text-3xl text-white font-400">Support</div>
+      </div>
+      <div className="flex flow-rw">
+        <div className="cursor-pointer">
+          <Image
+            src={notification}
+            alt="Notification Icon"
+            className='w-5 sm:w-8 h-5 sm:h-8'
+          />
         </div>
-    <Image src={bgHome} alt="Background" className="fixed -z-10 w-[100vw] h-[100vh]"  />
-    <div className='bg-HomeImage w-full h-full z-20'>
-    <section className="w-full py-2 px-8 h-[15%] flex flex-row justify-between pt-8">
-          <div>
-            <Image src={logo} alt="Logo" width={157} height={38} />
-          </div>
-          <div className="flex flex-row">
-            <div className="mr-10 text-txt-24 text-white  border-white border-b-[2px] font-400">Voting Event</div>
-            <div className="text-txt-24 text-white font-400">Support</div>
-          </div>
-          <div className="flex flow-rw">
-            <div className="cursor-pointer">
-              <Image
-                src={notification}
-                alt="Notification Icon"
-                width={32}
-                height={32}
-              />
-            </div>
-            <div className="cursor-pointer">
-              <Image
-                src={avatar}
-                alt="Notification Icon"
-                width={32}
-                height={32}
-              />
-            </div>
-          </div>
-        </section>
-        
-        {/*  */}
-        <div className="flex flex-row justify-end items-center px-8">
+        <div className="cursor-pointer">
+          <Image
+            src={avatar}
+            alt="Notification Icon"
+            className='w-5 sm:w-8 h-5 sm:h-8'
+          />
+        </div>
+      </div>
+    </section>
+    
+    {/*  */}
+    <div className="flex flex-row justify-end items-center lg:px-8 px-2">
           <div className="flex flex-col gap-2 justify-center items-center">
-            <p className="text-lg text-white">Voting Time</p>
-            <div className="rounded-lg shadow-md shadow-fuchsia-800 bg-black p-3 text-base text-white">72 : 03 : 00</div>
+            <p className="sm:text-lg xl:text-3xl text-xs text-white">Voting Time</p>
+            <div className="rounded-lg shadow-md shadow-fuchsia-800 bg-black p-2 xl:p-6 sm:p-3 xl:text-2xl text-sm sm:text-base text-white">72 : 03 : 00</div>
           </div>
         </div>
-
         {/*  */}
         <div className="flex flex-row items-center px-7">
           <div className="flex flex-col gap-2 justify-center">
-            <p className="text-2xl text-white">Welcome back, Nike!</p>
-            <p className="text-md text-white">Ready to cast your vote?</p>
+            <p className="text-base md:text-2xl text-white">Welcome back, Nike!</p>
+            <p className="text-sm md:text-md text-white">Ready to cast your vote?</p>
           </div>
         </div>
 
         {/*  */}
-        <div className="flex justify-between gap-3 items-center px-6 my-3 mb-6">
+        <div className="flex flex-col sm:flex-row flex-wrap md:flex-nowrap justify-between gap-3 items-start md:items-center px-6 my-3 mb-6">
         {
-            eventsArr.map((eventItem)=><EventCards title={eventItem.title} desc={eventItem.desc} navPage={eventItem.navPage} key={eventItem.title} />)
+            eventsArr.map((eventItem, index)=><EventCards title={eventItem.title} desc={eventItem.desc} navPage={eventItem.navPage} key={index} />)
         }
         </div>
 
         {/* */}
-        <div className="w-full flex justify-between gap-3 items-start px-6">
+        <div className="w-full flex flex-col md:flex-row justify-between gap-3 items-center sm:items-start px-6">
 
-            <div className="w-[55%] h-full">
+            <div className="w-[100%] md:w-[40%] h-full">
                 <CandidatesPreview category='Presidential' CandidatesArr={CandidateArr} />
             </div>
             <VoteGuide />

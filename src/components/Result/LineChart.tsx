@@ -47,14 +47,14 @@ interface LineChartOptions {
 
 const LineChart: React.FC = () => {
   const data: LineChartData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['APC', 'PDP', 'LP', 'ANPP', 'SDP'],
     datasets: [
       {
-        label: 'Sales',
-        data: [65, 59, 80, 81, 56, 55, 40],
+        label: '',
+        data: [6559808, 1565540, 2562729, 2909383, 6473999],
         fill: false,
-        backgroundColor: 'rgba(75,192,192,1)',
-        borderColor: 'rgba(75,192,192,1)',
+        backgroundColor: '#741CAC',
+        borderColor: '#741CAC',
       },
     ],
   };
@@ -67,12 +67,12 @@ const LineChart: React.FC = () => {
       },
       title: {
         display: true,
-        text: 'Monthly Sales Data',
+        text: 'Total number of votes',
       },
     },
   };
 
-  return <Line data={data} options={options} />;
+  return <Line data={data} options={options} height={50} width={100} />;
 };
 
 export default LineChart;
