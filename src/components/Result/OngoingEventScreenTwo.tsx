@@ -134,9 +134,9 @@ const OngoingEventScreenTwo: React.FC<OverlayProps> = ({ children }) => {
             <p className="w-[10%]  text-center ml-4">Action</p>
           </div>
 
-          {candidates.map((value, i) => {
+          {candidates.map((value, index) => {
             return (
-              <div className="flex flex-row justify-between w-full py-4 space-x-2 cursor-pointer hover:bg-[#EFDEFA] pl-2 rounded-md">
+              <div key={index} className="flex flex-row justify-between w-full py-4 space-x-2 cursor-pointer hover:bg-[#EFDEFA] pl-2 rounded-md">
                 <p className="w-[30%]">
                   {
                     <div className="flex flex-row space-x-2 items-center">

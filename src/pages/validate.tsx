@@ -1,7 +1,8 @@
-import Onboarding from '@/components/Onboarding/Onboarding';
+import Onboarding from "@/components/Onboarding/Onboarding";
+
 
 const ValidationPage = () => {
-  return <Onboarding />;
+  return <Onboarding eligibilitySource="" />;
 };
 
 export default ValidationPage;

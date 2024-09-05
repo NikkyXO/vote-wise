@@ -10,7 +10,7 @@ import {
 } from '../../../public/images/index.js';
 import LocationProvider from '../context/LocationContext';
 
-interface OverlayProps {}
+interface OverlayProps {};
 
 const OngoingEventScreenOne: React.FC<OverlayProps> = () => {
   const router = useRouter();
@@ -133,9 +133,9 @@ const OngoingEventScreenOne: React.FC<OverlayProps> = () => {
             <p className="w-[15%]">Vote Duration</p>
           </div>
 
-          {OngoingEvents.map((value, i) => {
+          {OngoingEvents.map((value, index) => {
             return (
-              <div className="flex flex-row justify-between w-full py-4 space-x-2 cursor-pointer hover:bg-[#EFDEFA] pl-2 rounded-md">
+              <div key={index} className="flex flex-row justify-between w-full py-4 space-x-2 cursor-pointer hover:bg-[#EFDEFA] pl-2 rounded-md">
                 <p className="w-[15%]">{value.Category}</p>
                 <p className="w-[55%] relative ">
                   <div>{value.Description}</div>

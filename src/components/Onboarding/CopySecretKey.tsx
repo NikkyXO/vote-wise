@@ -56,7 +56,7 @@ const CopySecretKey: React.FC<CopySecretKeyProps> = ({
         <div>
           <div className="text-txt-24 font-bold">Secret Key</div>
           <div className="text-sm">
-            Please copy your secret key now, it won't be
+            Please copy your secret key now, it won&apos;t be
           </div>
           <div className="text-sm">displayed again</div>
         </div>
@@ -101,7 +101,7 @@ const CopySecretKey: React.FC<CopySecretKeyProps> = ({
         </button>
       </div>
       <div className="text-xs text-red-500 mt-4">
-        If you don't copy your secret key now, you won't be able to access it
+        If you don&apos;t copy your secret key now, you won&apos;t be able to access it
         later. Please make sure to store it securely
       </div>
       {children}

@@ -39,7 +39,7 @@ const CancellationConfirmation: React.FC<CancellationConfirmationProps> = ({
           <div className="text-txt-24 font-bold mb-3">Kindly Confirm</div>
           <div className="text-sm">
             Are you sure you want to close without copying your secret key? You
-            won't be able to access it later.
+            won&apos;t be able to access it later.
           </div>
           <div className=" mt-4 space-x-4">
             <button

@@ -21,7 +21,7 @@ class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           /> */}
-          <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js" async></script>
         </Head>
         <body>
           <Main />
